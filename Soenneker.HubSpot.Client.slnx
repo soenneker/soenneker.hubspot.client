@@ -4,8 +4,13 @@
   </Folder>
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/build-and-test.yml" />
+    <File Path=".github/workflows/codeql.yml" />
     <File Path=".github/workflows/publish-package.yml" />
   </Folder>
-  <Project Path="src/Soenneker.HubSpot.Client.csproj" />
-  <Project Path="test/Soenneker.HubSpot.Client.Tests/Soenneker.HubSpot.Client.Tests.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/Soenneker.HubSpot.Client/Soenneker.HubSpot.Client.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Soenneker.HubSpot.Client.Tests/Soenneker.HubSpot.Client.Tests.csproj" />
+  </Folder>
 </Solution>

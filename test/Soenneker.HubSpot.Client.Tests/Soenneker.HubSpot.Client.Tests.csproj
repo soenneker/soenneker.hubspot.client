@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.HubSpot.Client.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.HubSpot.Client\Soenneker.HubSpot.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>
