@@ -1,20 +1,19 @@
 using Soenneker.HubSpot.Client.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.HubSpot.Client.Tests;
 
-[Collection("Collection")]
-public sealed class HubSpotClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class HubSpotClientUtilTests : HostedUnitTest
 {
     private readonly IHubSpotClientUtil _httpclient;
 
-    public HubSpotClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public HubSpotClientUtilTests(Host host) : base(host)
     {
         _httpclient = Resolve<IHubSpotClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
