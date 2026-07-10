@@ -11,3 +11,9 @@
 ```
 dotnet add package Soenneker.HubSpot.Client
 ```
+
+The parameterless `Get()` uses `HubSpot:Token`. To work with multiple HubSpot accounts or tenants, pass each private app access token explicitly:
+
+```csharp
+HttpClient tenantClient = await hubSpotClientUtil.Get(tenantAccessToken);
+```
