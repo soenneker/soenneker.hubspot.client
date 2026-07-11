@@ -17,7 +17,7 @@ namespace Soenneker.HubSpot.Client;
 public sealed class HubSpotClientUtil : IHubSpotClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
-    private readonly string _accessToken;
+    private readonly IConfiguration _configuration;
     private readonly ConcurrentDictionary<string, byte> _clientIds = new();
 
     private static readonly Uri _prodBaseUrl = new("https://api.hubapi.com/");
@@ -25,12 +25,12 @@ public sealed class HubSpotClientUtil : IHubSpotClientUtil
     public HubSpotClientUtil(IHttpClientCache httpClientCache, IConfiguration config)
     {
         _httpClientCache = httpClientCache;
-        _accessToken = config.GetValueStrict<string>("HubSpot:Token");
+        _configuration = config;
     }
 
     public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        return Get(_accessToken, cancellationToken);
+        return Get(_configuration.GetValueStrict<string>("HubSpot:Token"), cancellationToken);
     }
 
     public ValueTask<HttpClient> Get(string accessToken, CancellationToken cancellationToken = default)
