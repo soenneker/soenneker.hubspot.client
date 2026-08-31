@@ -6,15 +6,15 @@ using System.Threading;
 namespace Soenneker.HubSpot.Client.Abstract;
 
 /// <summary>
-/// A .NET thread-safe singleton HttpClient for 
+/// Provides cached HubSpot HTTP clients authenticated with private app access tokens.
 /// </summary>
 public interface IHubSpotClientUtil: IDisposable, IAsyncDisposable
 {
     /// <summary>
-    /// Gets the value.
+    /// Gets a client authenticated with the configured <c>HubSpot:Token</c>.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task containing the result of the operation.</returns>
+    /// <returns>A task containing the configured client.</returns>
     ValueTask<HttpClient> Get(CancellationToken cancellationToken = default);
 
     /// <summary>

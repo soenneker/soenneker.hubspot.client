@@ -13,12 +13,12 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.HubSpot.Client;
 
-///<inheritdoc cref="IHubSpotClientUtil"/>
 public sealed class HubSpotClientUtil : IHubSpotClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
     private readonly IConfiguration _configuration;
     private readonly ConcurrentDictionary<string, byte> _clientIds = new();
+    private readonly string _cachePrefix = $"{nameof(HubSpotClientUtil)}:{Guid.NewGuid():N}";
 
     private static readonly Uri _prodBaseUrl = new("https://api.hubapi.com/");
 
@@ -50,9 +50,6 @@ public sealed class HubSpotClientUtil : IHubSpotClientUtil
         }, cancellationToken);
     }
 
-    /// <summary>
-    /// Releases resources used by the current instance.
-    /// </summary>
     public void Dispose()
     {
         foreach (string clientId in _clientIds.Keys)
@@ -61,10 +58,6 @@ public sealed class HubSpotClientUtil : IHubSpotClientUtil
         }
     }
 
-    /// <summary>
-    /// Asynchronously releases resources used by the current instance.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public async ValueTask DisposeAsync()
     {
         foreach (string clientId in _clientIds.Keys)
@@ -73,8 +66,8 @@ public sealed class HubSpotClientUtil : IHubSpotClientUtil
         }
     }
 
-    private static string GetClientId(string accessToken)
+    private string GetClientId(string accessToken)
     {
-        return $"{nameof(HubSpotClientUtil)}:{XxHash3Util.Hash(accessToken)}";
+        return $"{_cachePrefix}:{XxHash3Util.Hash(accessToken)}";
     }
 }

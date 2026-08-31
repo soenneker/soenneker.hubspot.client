@@ -6,7 +6,7 @@ using Soenneker.Utils.HttpClientCache.Registrar;
 namespace Soenneker.HubSpot.Client.Registrars;
 
 /// <summary>
-/// A .NET thread-safe singleton HttpClient for GitHub
+/// Registers the cached HubSpot HTTP client provider.
 /// </summary>
 public static class HubSpotClientUtilRegistrar
 {
