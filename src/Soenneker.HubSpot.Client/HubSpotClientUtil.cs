@@ -13,6 +13,7 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.HubSpot.Client;
 
+/// <inheritdoc cref="IHubSpotClientUtil" />
 public sealed class HubSpotClientUtil : IHubSpotClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
