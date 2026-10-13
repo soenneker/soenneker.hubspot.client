@@ -31,7 +31,7 @@ public sealed class HubSpotClientUtil : IHubSpotClientUtil
 
     public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        return Get(_configuration.GetValueStrict<string>("HubSpot:Token"), cancellationToken);
+        return Get(_configuration.GetStringStrict("HubSpot:Token"), cancellationToken);
     }
 
     public ValueTask<HttpClient> Get(string accessToken, CancellationToken cancellationToken = default)
